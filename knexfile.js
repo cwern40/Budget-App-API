@@ -4,11 +4,12 @@ module.exports = {
 
   development: {
     client: 'pg',
-    useNullAsDefault: true,
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      host:     'localhost',
+      port:     5432,
+      user:     process.env.DB_USERNAME,
+      database: 'Budget-App',
+      password: process.env.DB_PASSWORD
     },
     migrations: {
       directory: './database/migrations'
