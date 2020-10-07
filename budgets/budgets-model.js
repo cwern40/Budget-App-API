@@ -6,6 +6,10 @@ module.exports = {
     addBudget,
     findBudgetIncomes,
     findBudgetExpenses,
+    addIncome,
+    findIncomeById,
+    addExpense,
+    findExpenseById
 }
 
 function findBudgetsByUser(user_id) {
@@ -41,3 +45,24 @@ function findBudgetExpenses(budget_id) {
     .where({ budget_id })
 }
 
+function findIncomeById(id) {
+    return db('income_table').where({ id }).first()
+}
+
+function addIncome(data) {
+    return db('income_table').insert(data)
+        .then(newIncome => {
+            return findIncomeById(newIncome[0])
+        })
+}
+
+function findExpenseById(id) {
+    return db('expenses_table').where({ id }).first()
+}
+
+function addExpense(data) {
+    return db('expenses_table').insert(data)
+        .then(newExpense => {
+            return findExpenseById(newExpense[0])
+        })
+}
