@@ -50,10 +50,14 @@ router.post('/login', (req, res) => {
             if (user && bcrypt.compareSync(password, user.password)) {
                 const token = generateToken(user)
                 delete user.password
-                res.status(200).json({
-                    user,
-                    token
-                })
+                Users.findUserBudgets(user.id)
+                    .then(budgets => {
+                        res.status(200).json({
+                            user,
+                            budgets: budgets,
+                            token
+                        })
+                    })
             } else {
                 res.status(401).json({
                     message: 'Incorrect username or password'
