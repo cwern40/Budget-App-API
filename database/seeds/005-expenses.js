@@ -1,3 +1,4 @@
+const db = require('../db-config');
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries

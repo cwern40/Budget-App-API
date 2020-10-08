@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const db = require('../db-config');
 
 const john = bcrypt.hashSync("johnpassword", 10);
 const jane = bcrypt.hashSync("janepassword", 10);
