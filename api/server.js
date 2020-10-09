@@ -11,7 +11,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use('/api/user', userRouter);
+server.use('/api/users', userRouter);
 
 server.get('/', (req, res) => {
     res.send("It must be working!!");
