@@ -58,6 +58,9 @@ router.post('/login', (req, res) => {
                             token
                         })
                     })
+                    .catch(err => {
+                        res.status(500).json(err);
+                    })
             } else {
                 res.status(401).json({
                     message: 'Incorrect username or password'

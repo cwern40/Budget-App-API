@@ -23,7 +23,7 @@ function findUserBudgets(user_id) {
     return db('budget_member_table as t')
         .join('budget_table as b', 'b.id', 't.budget_id')
         .join('user_table as u', 'u.id', 't.user_id')
-        .select('b.id', 'b.name')
+        .select('b.id', 'b.budget_name')
         .where({ user_id })
 }
 
