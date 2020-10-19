@@ -6,7 +6,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('budget_table').insert([
-        {budget_name: 'Personal Budget-John'},
+        {budget_name: 'Personal Budget-John', savings_amount: 13500},
         {budget_name: 'Personal Budget-Jane'}
       ]);
     });
