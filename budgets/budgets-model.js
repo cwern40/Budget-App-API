@@ -8,7 +8,13 @@ module.exports = {
     addIncome,
     findIncomeById,
     addExpense,
-    findExpenseById
+    findExpenseById,
+    updateBudget,
+    deleteBudget,
+    updateIncome,
+    deleteIncome,
+    updateExpense,
+    deleteExpence
 }
 
 function findBudgetById(id) {
@@ -37,23 +43,56 @@ function findBudgetExpenses(budget_id) {
 }
 
 function findIncomeById(id) {
-    return db('income_table').where({ id }).first()
+    return db('income_table').where({ id }).first();
 }
 
 function addIncome(data) {
     return db('income_table').insert(data)
         .then(newIncome => {
-            return findIncomeById(newIncome[0])
+            return findIncomeById(newIncome[0]);
         })
 }
 
 function findExpenseById(id) {
-    return db('expenses_table').where({ id }).first()
+    return db('expenses_table').where({ id }).first();
 }
 
 function addExpense(data) {
     return db('expenses_table').insert(data)
         .then(newExpense => {
-            return findExpenseById(newExpense[0])
+            return findExpenseById(newExpense[0]);
         })
+}
+
+function updateBudget(id, changes) {
+    return db('budget_table').where({ id }).update(changes)
+        .then(update => {
+            return findBudgetById(id);
+        })
+}
+
+function deleteBudget(id) {
+    return db('budget_table').where({ id }).del();
+}
+
+function updateIncome(id, changes) {
+    return db('income_table').where({ id }).updated(changes)
+        .then(update => {
+            return findIncomeById(id);
+        })
+}
+
+function deleteIncome(id) {
+    return db('income_table').where({ id }).del();
+}
+
+function updateExpense(id, changes) {
+    return db('expenses_table').where({ id }).update(changes)
+        .then(update => {
+            return findExpenseById(id);
+        })
+}
+
+function deleteExpence(id) {
+    return db('expenses_table').where({ id }).del();
 }

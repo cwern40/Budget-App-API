@@ -72,4 +72,27 @@ router.post('/:id/expenses', (req, res) => {
         })
 })
 
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+
+    Budget.updateBudget(id, changes)
+        .then(updated => {
+            if (updateBudget) {
+                res.status(200).json({
+                    updated: updated
+                })
+            } else {
+                res.status(404).json({
+                    message: 'Could not find budget with that id'
+                })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Failed to update budget'
+            })
+        })
+})
+
 module.exports = router;
