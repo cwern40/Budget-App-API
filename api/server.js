@@ -4,6 +4,7 @@ const helmet = require('helmet');
 require('dotenv').config();
 
 const userRouter = require('../users/users-router');
+const budgetrouter = require('../budgets/budgets-router');
 
 const server = express();
 
@@ -12,6 +13,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/users', userRouter);
+server.use('/api/budgets', budgetrouter);
 
 server.get('/', (req, res) => {
     res.send("It must be working!!");
