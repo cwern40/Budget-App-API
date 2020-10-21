@@ -95,4 +95,27 @@ router.put('/:id', (req, res) => {
         })
 })
 
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+
+    Budget.deleteBudget(id)
+        .then(count => {
+            if (count) {
+                res.status(200).json({
+                    removed: count
+                })
+            } else {
+                res.status(404).json({
+                    message: 'Could not find budget by that id'
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({
+                message: 'Failed to delete the bugdet'
+            })
+        })
+})
+
 module.exports = router;
