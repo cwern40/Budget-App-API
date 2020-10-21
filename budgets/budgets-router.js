@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
             }
         })
         .catch(err => {
-            console.log(err);
+            console.log('Budget.findBudgetById', err);
             res.status(500).json(err);
         })
 })
@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
             res.status(201).json(saved);
         })
         .catch(err => {
-            console.log(err);
+            console.log('Budget.addBudget', err);
             res.status(500).json(err);
         })
 })
@@ -54,6 +54,7 @@ router.post('/:id/income', (req, res) => {
             res.status(201).json(saved);
         })
         .catch(err => {
+            console.log('Budget.addIncome', err)
             res.status(500).json(err);
         })
 })
@@ -68,6 +69,7 @@ router.post('/:id/expenses', (req, res) => {
             res.status(201).json(saved);
         })
         .catch(err => {
+            console.log('Budget.addExpense', err)
             res.status(500).json(err);
         })
 })
@@ -78,7 +80,7 @@ router.put('/:id', (req, res) => {
 
     Budget.updateBudget(id, changes)
         .then(updated => {
-            if (updateBudget) {
+            if (updated) {
                 res.status(200).json({
                     updated: updated
                 })
@@ -89,6 +91,7 @@ router.put('/:id', (req, res) => {
             }
         })
         .catch(err => {
+            console.log('Budget.updateBudget', err)
             res.status(500).json({
                 message: 'Failed to update budget'
             })
@@ -111,7 +114,7 @@ router.delete('/:id', (req, res) => {
             }
         })
         .catch(err => {
-            console.log(err)
+            console.log('Budget.deleteBudget', err)
             res.status(500).json({
                 message: 'Failed to delete the bugdet'
             })
