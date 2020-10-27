@@ -1,5 +1,4 @@
 const db = require('../database/db-config');
-const budget = require('../budgets/budgets-model');
 
 module.exports = {
     findExpenseById,
@@ -14,7 +13,7 @@ function findExpenseById(id) {
 function updateExpense(id, changes) {
     return db('expenses_table').where({ id }).update(changes)
         .then(update => {
-            return budget.findExpenseById(id);
+            return findExpenseById(id);
         })
 }
 
