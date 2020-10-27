@@ -1,5 +1,6 @@
 const db = require('../database/db-config');
 const Expense = require('../expenses/expenses-model.js');
+const Income = require('../income/income-model');
 
 module.exports = {
     findBudgetById,
@@ -40,7 +41,7 @@ function findBudgetExpenses(budget_id) {
 function addIncome(data) {
     return db('income_table').insert(data).returning('id')
         .then(newIncome => {
-            return findIncomeById(newIncome[0]);
+            return Income.findIncomeById(newIncome[0]);
         })
 }
 
