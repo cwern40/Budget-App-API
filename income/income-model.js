@@ -11,7 +11,7 @@ function findIncomeById(id) {
 }
 
 function updateIncome(id, changes) {
-    return db('income_table').where({ id }).updated(changes)
+    return db('income_table').where({ id }).update(changes)
         .then(update => {
             return findIncomeById(id);
         })
