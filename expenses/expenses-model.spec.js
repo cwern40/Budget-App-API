@@ -8,6 +8,7 @@ describe('the expenses model', () => {
 
     beforeEach(async () => {
         await db.raw('TRUNCATE "expenses_table" RESTART IDENTITY CASCADE;');
+        await db.raw('TRUNCATE "budget_table" RESTART IDENTITY CASCADE;');
     })
 
     describe('The get model', () => {
@@ -83,7 +84,7 @@ describe('the expenses model', () => {
         })
     })
 
-    describe('The delete mode', () => {
+    describe('The delete model', () => {
 
         it('deleteExpence should return a status of 200', async () => {
             const newBudget = { budget_name: 'Personal Budget-John', savings_amount: 13500 };

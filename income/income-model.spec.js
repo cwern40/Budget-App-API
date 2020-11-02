@@ -3,12 +3,12 @@ const budgets = require('../budgets/budgets-model');
 const db = require('../database/db-config');
 const request = require('supertest');
 const server = require('../api/server');
-const { isMainThread } = require('worker_threads');
 
 describe('the income model', () => {
 
     beforeEach(async () => {
         await db.raw('TRUNCATE "income_table" RESTART IDENTITY CASCADE;');
+        await db.raw('TRUNCATE "budget_table" RESTART IDENTITY CASCADE;');
     })
 
     describe('the get mode', () => {
