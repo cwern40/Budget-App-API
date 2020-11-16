@@ -16,9 +16,9 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/users', userRouter);
-server.use('/api/budgets', budgetrouter);
-server.use('/api/income', incomeRouter);
-server.use('/api/expenses', expensesRouter);
+server.use('/api/budgets', authorization, budgetrouter);
+server.use('/api/income', authorization, incomeRouter);
+server.use('/api/expenses', authorization, expensesRouter);
 
 server.get('/', (req, res) => {
     res.send("It must be working!!");
