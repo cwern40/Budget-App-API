@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
             if (err) {
                 console.log("failed verification", err);
                 res.status(401).json({
-                    message: 'not authorized'
+                    message: 'You are not authorized'
                 })
             } else {
                 req.decodedToken = decodedToken;
