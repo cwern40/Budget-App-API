@@ -10,7 +10,16 @@ router.get('/:id', (req, res) => {
     Users.findById(id)
         .then(user => {
             if (user) {
-                res.json(user);
+                Users.findUserBudgets(user.id)
+                    .then(budgets => {
+                        res.status(200).json({
+                            user,
+                            budgets: budgets,
+                        })
+                    })
+                    .catch(err => {
+                        res.status(500).json(err);
+                    })
             } else {
                 res.status(404).json({
                     message: 'Could not find user with given id'
